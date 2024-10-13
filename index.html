@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Used Subdomains - Dovuchcha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            height: 100%;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .loader-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            z-index: 10;
+            transition: opacity 0.3s;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #2D6A4F;
+            width: 40px;
+            height: 40px;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 600;
+            color: #2D6A4F;
+            margin-bottom: 20px;
+            animation: fadeIn 1.2s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .table-container {
+            height: 300px;
+            overflow-y: auto;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .subdomain-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            overflow: hidden;
+            border-radius: 12px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s ease-in-out forwards;
+        }
+
+        .subdomain-table th, .subdomain-table td {
+            padding: 15px;
+            text-align: left;
+            font-size: 1.2em;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .subdomain-table th {
+            background-color: #2D6A4F;
+            color: white;
+        }
+
+        .subdomain-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .subdomain-table td a {
+            color: #2D6A4F;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .subdomain-table td a:hover {
+            text-decoration: underline;
+        }
+
+        .main-link {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #2D6A4F;
+            font-size: 1.2em;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid #2D6A4F;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+            animation: fadeIn 2s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        .main-link:hover {
+            background-color: #2D6A4F;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body.loaded .loader-wrapper {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <div>
+        <h1>Already taken subdomains</h1>
+
+        <div class="table-container">
+            <table class="subdomain-table">
+                <thead>
+                    <tr>
+                        <th>Subdomain</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.dovuchcha.uz" target="_blank">www.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.example.dovuchcha.uz" target="_blank">www.example.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.waiting.dovuchcha.uz" target="_blank">www.waiting.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.sub.dovuchcha.uz" target="_blank">www.sub.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.behzod.dovuchcha.uz" target="_blank">www.behzod.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.jakhongir.dovuchcha.uz" target="_blank">www.jakhongir.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.jahongir.dovuchcha.uz" target="_blank">www.jahongir.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.jaxongir.dovuchcha.uz" target="_blank">www.jaxongir.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.astronaut.dovuchcha.uz" target="_blank">www.astronaut.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.astro.dovuchcha.uz" target="_blank">www.astro.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.rider.dovuchcha.uz" target="_blank">www.rider.dovuchcha.uz</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.ghost.dovuchcha.uz" target="_blank">www.ghost.dovuchcha.uz</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <a class="main-link" href="https://www.dovuchcha.uz" target="_blank">Go to Dovuchcha Main Website</a>
+    </div>
+
+    <script>
+        // Simulate loading for at least 1 second
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+                document.body.classList.add("loaded");
+            }, 1000); // Minimum 1 second delay
+        });
+    </script>
+
+</body>
+</html>
