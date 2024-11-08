@@ -2,10 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order Your Subdomain - Dovuchcha</title>
+    <title>Request Your Subdomain - Dovuchcha</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Include your existing styles or link to your CSS file */
+    .subdomain-container {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .subdomain-container input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px 0 0 8px;
+        font-size: 1em;
+        border-right: none;
+    }
+
+    .subdomain-container select {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        border-left: none;
+        border-radius: 0 8px 8px 0;
+        font-size: 1em;
+        background-color: #f0f0f0;
+        color: #888;
+        height: 40px
+    }
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f5f5f5;
@@ -14,6 +39,7 @@
         h1 {
             color: #2D6A4F;
             margin-bottom: 20px;
+            text-align: center;
         }
         form {
             background-color: #ffffff;
@@ -31,7 +57,7 @@
         input, textarea {
             width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 1em;
@@ -48,16 +74,37 @@
         button:hover {
             background-color: #1B4D3E;
         }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .valid {
+            border-color: #28a745;
+        }
+        .invalid {
+            border-color: #dc3545;
+        }
     </style>
 </head>
 <body>
-    <h1>Order Your Subdomain</h1>
-    <form action="https://formspree.io/f/mbljowkj" method="POST">
-        <!-- Add the hidden _next input field here -->
+    <h1>Request Your Subdomain</h1>
+    <form action="https://formspree.io/f/mbljowkj" method="POST" onsubmit="return validateForm()">
         <input type="hidden" name="_next" value="thanks.html">
 
         <label for="subdomain">Desired Subdomain:</label>
-        <input type="text" id="subdomain" name="subdomain" placeholder="e.g., yourname.dovuchcha.uz" required>
+        <div class="subdomain-container">
+            <input type="text" id="subdomain" name="subdomain" placeholder="e.g., yourname" required>
+            <select id="domain">
+                <option value="dovuchcha.uz">.dovuchcha.uz</option>
+                <option value="dmail.uz">.dmail.uz</option>
+                <option value="dovuchchalar.uz">.dovuchchalar.uz</option>
+            </select>
+        </div>
+        <p class="error-message" id="subdomain-error">This subdomain is already taken. Please choose another one.</p>
+        <p class="error-message" id="format-error">Invalid format. Subdomain should contain only letters and numbers.</p>
 
         <label for="name">Your Full Name:</label>
         <input type="text" id="name" name="name" placeholder="Your full name" required>
@@ -70,5 +117,77 @@
 
         <button type="submit">Submit Request</button>
     </form>
+
+    <script>
+        // List of existing subdomains with full domain suffixes
+        const subdomains = [
+            "www.dovuchcha.uz",
+            "otabekabdukarimov.dovuchcha.uz",
+            "example.dovuchcha.uz",
+            "waiting.dovuchcha.uz",
+            "behzod.dovuchcha.uz",
+            "jakhongir.dovuchcha.uz",
+            "jahongir.dovuchcha.uz",
+            "jaxongir.dovuchcha.uz",
+            "astronaut.dovuchcha.uz",
+            "astro.dovuchcha.uz",
+            "rider.dovuchcha.uz",
+            "ghost.dovuchcha.uz",
+            "yourname.dmail.uz",
+            "sample.dovuchchalar.uz"
+        ];
+
+        // Regular expression to validate the custom part of the subdomain
+        const subdomainPattern = /^[a-z0-9]+$/i;
+
+        // Get elements
+        const subdomainInput = document.getElementById("subdomain");
+        const domainSelect = document.getElementById("domain");
+        const errorMessage = document.getElementById("subdomain-error");
+        const formatError = document.getElementById("format-error");
+
+        // Real-time validation function
+        subdomainInput.addEventListener("input", validateSubdomain);
+        domainSelect.addEventListener("change", validateSubdomain);
+
+        function validateSubdomain() {
+            const enteredSubdomain = subdomainInput.value.toLowerCase();
+            const selectedDomain = domainSelect.value;
+            const fullSubdomain = `${enteredSubdomain}.${selectedDomain}`;
+
+            // Validate the format of the entered subdomain
+            if (!subdomainPattern.test(enteredSubdomain)) {
+                formatError.style.display = "block";
+                errorMessage.style.display = "none";
+                subdomainInput.classList.add("invalid");
+                subdomainInput.classList.remove("valid");
+            } else if (subdomains.includes(fullSubdomain)) {
+                // If format is correct, check if it's already taken
+                formatError.style.display = "none";
+                errorMessage.style.display = "block";
+                subdomainInput.classList.add("invalid");
+                subdomainInput.classList.remove("valid");
+            } else {
+                // Valid format and available subdomain
+                formatError.style.display = "none";
+                errorMessage.style.display = "none";
+                subdomainInput.classList.add("valid");
+                subdomainInput.classList.remove("invalid");
+            }
+        }
+
+        // Final form validation before submission
+        function validateForm() {
+            const enteredSubdomain = subdomainInput.value.toLowerCase();
+            const selectedDomain = domainSelect.value;
+            const fullSubdomain = `${enteredSubdomain}.${selectedDomain}`;
+
+            // Check both format and availability
+            if (!subdomainPattern.test(enteredSubdomain) || subdomains.includes(fullSubdomain)) {
+                return false; // Prevent form submission if invalid
+            }
+            return true; // Allow form submission if valid
+        }
+    </script>
 </body>
 </html>
