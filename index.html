@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Used Subdomains - Dovuchcha</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -41,8 +42,8 @@
             border: 5px solid #f3f3f3;
             border-radius: 50%;
             border-top: 5px solid #2D6A4F;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1.5s linear infinite;
         }
 
@@ -52,25 +53,27 @@
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             font-weight: 600;
             color: #2D6A4F;
             margin-bottom: 20px;
+            text-align: center;
             animation: fadeIn 1.2s ease-in-out forwards;
             opacity: 0;
         }
 
         .table-container {
-            height: 300px;
+            height: 325px;
             overflow-y: auto;
             width: 100%;
             max-width: 800px;
+            margin-top: 20px;
         }
 
         .subdomain-table {
             width: 100%;
             border-collapse: collapse;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             background-color: #ffffff;
             overflow: hidden;
             border-radius: 12px;
@@ -89,24 +92,37 @@
         .subdomain-table th {
             background-color: #2D6A4F;
             color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1;
         }
 
         .subdomain-table tr:hover {
             background-color: #f1f1f1;
         }
 
+        .subdomain-table td {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .subdomain-table td a {
             color: #2D6A4F;
             text-decoration: none;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .subdomain-table td a:hover {
-            text-decoration: underline;
+            color: #1B4332;
+            transform: translateX(5px);
+            transition: all 0.3s;
         }
 
         .main-link {
-            margin-top: 20px;
             display: inline-block;
             text-decoration: none;
             color: #2D6A4F;
@@ -115,6 +131,7 @@
             padding: 10px 20px;
             border: 2px solid #2D6A4F;
             border-radius: 8px;
+            margin: 15px 10px;
             transition: background-color 0.3s, color 0.3s;
             animation: fadeIn 2s ease-in-out forwards;
             opacity: 0;
@@ -140,6 +157,12 @@
             opacity: 0;
             pointer-events: none;
         }
+
+        .icon-link {
+            color: #2D6A4F;
+            font-size: 1.5em;
+        }
+
     </style>
 </head>
 <body>
@@ -149,7 +172,7 @@
     </div>
 
     <div>
-        <h1>Already taken subdomains</h1>
+        <h1>Already Taken Subdomains</h1>
 
         <div class="table-container">
             <table class="subdomain-table">
@@ -158,60 +181,57 @@
                         <th>Subdomain</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="https://www.dovuchcha.uz" target="_blank">www.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.otabekabdukarimov.dovuchcha.uz" target="_blank">www.otabekabdukarimov.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.example.dovuchcha.uz" target="_blank">www.example.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.waiting.dovuchcha.uz" target="_blank">www.waiting.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.sub.dovuchcha.uz" target="_blank">www.sub.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.behzod.dovuchcha.uz" target="_blank">www.behzod.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.jakhongir.dovuchcha.uz" target="_blank">www.jakhongir.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.jahongir.dovuchcha.uz" target="_blank">www.jahongir.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.jaxongir.dovuchcha.uz" target="_blank">www.jaxongir.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.astronaut.dovuchcha.uz" target="_blank">www.astronaut.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.astro.dovuchcha.uz" target="_blank">www.astro.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.rider.dovuchcha.uz" target="_blank">www.rider.dovuchcha.uz</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://www.ghost.dovuchcha.uz" target="_blank">www.ghost.dovuchcha.uz</a></td>
-                    </tr>
+                <tbody id="subdomain-list">
+                    <!-- JavaScript will insert subdomain rows here -->
                 </tbody>
             </table>
         </div>
 
-        <a class="main-link" href="https://www.dovuchcha.uz" target="_blank">Go to Dovuchcha Main Website</a>
-        <a class="main-link" href="order.html">Order Your Subdomain</a>
+        <a class="main-link" href="https://www.dovuchcha.uz" target="_blank">
+            <i class="fas fa-home"></i> Go to Dovuchcha Main Website
+        </a>
+        <a class="main-link" href="order.html">
+            <i class="fas fa-clipboard-list"></i> Request Your Subdomain
+        </a>
     </div>
 
     <script>
-        // Simulate loading for at least 1  second
+        // Array of subdomains
+        const subdomains = [
+            "www.dovuchcha.uz",
+            'otabekabdukarimov.dovuchcha.uz',
+            "example.dovuchcha.uz",
+            "waiting.dovuchcha.uz",
+            "behzod.dovuchcha.uz",
+            "jakhongir.dovuchcha.uz",
+            "jahongir.dovuchcha.uz",
+            "jaxongir.dovuchcha.uz",
+            "astronaut.dovuchcha.uz",
+            "astro.dovuchcha.uz",
+            "rider.dovuchcha.uz",
+            "ghost.dovuchcha.uz"
+        ];
+
+        // Select the table body element
+        const subdomainList = document.getElementById("subdomain-list");
+
+        // Iterate over subdomains and create table rows
+        subdomains.forEach(subdomain => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>
+                    ${subdomain === "www.dovuchcha.uz" ? '<i class="fas fa-star icon-link" style="color: #FFD700;"></i>' : '<i class="fas fa-link icon-link"></i>'}
+                    <a href="https://${subdomain}" target="_blank">${subdomain}</a>
+                </td>
+            `;
+            subdomainList.appendChild(row);
+        });
+
+        // Loader effect
         window.addEventListener("load", function () {
             setTimeout(function () {
                 document.body.classList.add("loaded");
-            }, 1000); // Minimum 1 second delay
+            }, 1000);
         });
     </script>
 
